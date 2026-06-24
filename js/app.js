@@ -142,6 +142,11 @@
     if (e.key === 'Escape' && !el('reference-modal').classList.contains('hidden')) closeReferenceModal();
   });
 
+  el('toggle-ext-rows-btn').addEventListener('click', () => {
+    const hidden = el('reference-table').classList.toggle('hide-ext');
+    el('toggle-ext-rows-btn').textContent = hidden ? 'Show extension rows' : 'Hide extension rows';
+  });
+
   el('chain-min').addEventListener('input', () => {
     el('chain-min-val').textContent = el('chain-min').value;
     if (parseInt(el('chain-min').value, 10) > parseInt(el('chain-max').value, 10)) {

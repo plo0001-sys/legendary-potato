@@ -160,24 +160,27 @@
       <h2>Functional Group Reference</h2>
       <button id="close-reference-btn" class="icon-btn" aria-label="Close">&times;</button>
     </div>
-    <p class="modal-subtitle">Listed in priority order (highest to lowest) for choosing the principal characteristic group when naming a compound. Cells are left blank where VCE Chemistry Units 3&amp;4 doesn't require that form.</p>
+    <div class="modal-subtitle-row">
+      <p class="modal-subtitle">Listed in priority order (highest to lowest) for choosing the principal characteristic group when naming a compound. Cells are left blank where VCE Chemistry Units 3&amp;4 doesn't require that form.</p>
+      <button type="button" id="toggle-ext-rows-btn" class="link-btn">Hide extension rows</button>
+    </div>
     <div class="table-scroll">
-      <table class="reference-table">
+      <table class="reference-table" id="reference-table">
         <thead>
           <tr><th>#</th><th>IUPAC class</th><th>Functional group structure</th><th>Prefix</th><th>Suffix</th></tr>
         </thead>
         <tbody>
           <tr><td>1</td><td>Carboxylic acid</td><td>&minus;COOH</td><td>&mdash;</td><td>-oic acid</td></tr>
           <tr><td>2</td><td>Ester</td><td>&minus;COO&minus;</td><td>&mdash;</td><td>-oate</td></tr>
-          <tr><td>3</td><td>Amide</td><td>&minus;CONH<sub>2</sub></td><td>&mdash;</td><td>-amide</td></tr>
-          <tr><td>4</td><td>Nitrile <span class="ext-tag">(extension)</span></td><td>&minus;C&equiv;N</td><td>&mdash;</td><td>-nitrile</td></tr>
+          <tr class="ext-row"><td>3</td><td>Amide <span class="ext-tag">(extension)</span></td><td>&minus;CONH<sub>2</sub></td><td>&mdash;</td><td>-amide</td></tr>
+          <tr class="ext-row"><td>4</td><td>Nitrile <span class="ext-tag">(extension)</span></td><td>&minus;C&equiv;N</td><td>&mdash;</td><td>-nitrile</td></tr>
           <tr><td>5</td><td>Aldehyde</td><td>&minus;CHO</td><td>&mdash;</td><td>-al</td></tr>
           <tr><td>6</td><td>Ketone</td><td>&gt;C=O</td><td>&mdash;</td><td>-one</td></tr>
           <tr><td>7</td><td>Alcohol</td><td>&minus;OH</td><td>hydroxy-</td><td>-ol</td></tr>
-          <tr><td>8</td><td>Thiol <span class="ext-tag">(extension)</span></td><td>&minus;SH</td><td>sulfanyl-</td><td>-thiol</td></tr>
+          <tr class="ext-row"><td>8</td><td>Thiol <span class="ext-tag">(extension)</span></td><td>&minus;SH</td><td>sulfanyl-</td><td>-thiol</td></tr>
           <tr><td>9</td><td>Amine</td><td>&minus;NH<sub>2</sub></td><td>amino-</td><td>-amine</td></tr>
           <tr><td>10</td><td>Alkene</td><td>C=C</td><td>&mdash;</td><td>-ene</td></tr>
-          <tr><td>11</td><td>Alkyne <span class="ext-tag">(extension)</span></td><td>C&equiv;C</td><td>&mdash;</td><td>-yne</td></tr>
+          <tr class="ext-row"><td>11</td><td>Alkyne <span class="ext-tag">(extension)</span></td><td>C&equiv;C</td><td>&mdash;</td><td>-yne</td></tr>
           <tr><td>12</td><td>Halogen substituents</td><td>&minus;F, &minus;Cl, &minus;Br, &minus;I</td><td>fluoro-, chloro-, bromo-, iodo-</td><td>&mdash;</td></tr>
           <tr><td>13</td><td>Alkyl substituents</td><td>&minus;CH<sub>3</sub>, &minus;C<sub>2</sub>H<sub>5</sub>, &minus;C<sub>3</sub>H<sub>7</sub>, &minus;C<sub>4</sub>H<sub>9</sub></td><td>methyl-, ethyl-, propyl-, butyl-</td><td>&mdash;</td></tr>
         </tbody>

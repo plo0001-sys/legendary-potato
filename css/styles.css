@@ -267,7 +267,9 @@ svg.skeletal text { font-family: -apple-system, Arial, sans-serif; }
 
 .modal-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .modal-header h2 { margin: 0; }
-.modal-subtitle { color: var(--muted); font-size: 0.88rem; margin: 8px 0 18px; }
+.modal-subtitle { color: var(--muted); font-size: 0.88rem; margin: 0; }
+.modal-subtitle-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin: 8px 0 18px; }
+.modal-subtitle-row .link-btn { flex-shrink: 0; white-space: nowrap; }
 
 .icon-btn {
   background: none;
@@ -291,3 +293,4 @@ svg.skeletal text { font-family: -apple-system, Arial, sans-serif; }
 }
 .reference-table th { color: var(--muted); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; }
 .reference-table td:nth-child(2) { font-weight: 600; }
+.reference-table.hide-ext .ext-row { display: none; }
