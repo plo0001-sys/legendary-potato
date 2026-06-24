@@ -377,6 +377,39 @@
     renderStats();
   });
 
+  function csvField(value) {
+    return `"${String(value).replace(/"/g, '""')}"`;
+  }
+
+  function statsToCsv() {
+    const rows = [['Category', 'Label', 'Correct', 'Attempted', 'Accuracy %']];
+    const pctOf = r => r.attempted ? Math.round((r.correct / r.attempted) * 100) : 0;
+    rows.push(['Overall', '', stats.totalCorrect, stats.totalAttempted, pctOf({ correct: stats.totalCorrect, attempted: stats.totalAttempted })]);
+    Object.keys(stats.byClass).forEach(k => {
+      const r = stats.byClass[k];
+      rows.push(['By compound class', CLASS_LABELS[k] || k, r.correct, r.attempted, pctOf(r)]);
+    });
+    Object.keys(stats.byType).forEach(k => {
+      const r = stats.byType[k];
+      rows.push(['By question type', (QUESTION_TYPES[k] && QUESTION_TYPES[k].label) || k, r.correct, r.attempted, pctOf(r)]);
+    });
+    return rows.map(row => row.map(csvField).join(',')).join('\r\n');
+  }
+
+  el('download-stats-btn').addEventListener('click', () => {
+    const csv = statsToCsv();
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const dateStr = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `chem-quiz-stats-${dateStr}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
   // --- init ---
   refreshHomeSummary();
   showScreen('screen-home');
