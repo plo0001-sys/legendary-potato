@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VCE Organic Chemistry Quiz</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="app">
+
+  <header class="app-header">
+    <h1>VCE Organic Chemistry Quiz</h1>
+    <nav class="top-nav">
+      <button id="nav-home" class="nav-btn">Home</button>
+      <button id="nav-customize" class="nav-btn">Customize</button>
+      <button id="nav-stats" class="nav-btn">Stats</button>
+      <button id="open-reference-btn" class="nav-btn">Functional Groups</button>
+    </nav>
+  </header>
+
+  <main id="screens">
+
+    <section id="screen-home" class="screen">
+      <h2>Welcome</h2>
+      <p>Generate random organic compounds and test yourself on naming, classifying, and writing formulas &mdash; VCE Chemistry Units 3&amp;4 style.</p>
+      <div class="home-actions">
+        <button id="start-quiz-btn" class="primary-btn">Start Quiz</button>
+        <button id="open-customize-btn" class="secondary-btn">Customize Quiz</button>
+      </div>
+      <div id="home-summary" class="settings-summary"></div>
+    </section>
+
+    <section id="screen-customize" class="screen">
+      <h2>Customize Quiz</h2>
+      <form id="customize-form">
+
+        <fieldset>
+          <legend>Question types</legend>
+          <div class="grid-2" id="qtype-options"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Compound classes</legend>
+          <div class="grid-3" id="class-options"></div>
+          <div class="fieldset-actions">
+            <button type="button" id="classes-all-btn" class="link-btn">Select all</button>
+            <button type="button" id="classes-none-btn" class="link-btn">Select none</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Extension topics (beyond VCE)</legend>
+          <p class="fieldset-note">Goes beyond the core VCE Chemistry Units 3&amp;4 syllabus &mdash; off by default. Turn these on for extra challenge or depth.</p>
+          <div class="grid-3" id="extension-class-options"></div>
+          <div class="grid-2" id="extension-feature-options"></div>
+          <div class="fieldset-actions">
+            <button type="button" id="extension-all-btn" class="link-btn">Select all</button>
+            <button type="button" id="extension-none-btn" class="link-btn">Select none</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Carbon chain length</legend>
+          <div class="range-row">
+            <label for="chain-min">Min carbons</label>
+            <input type="range" id="chain-min" min="1" max="8" value="1">
+            <span id="chain-min-val" class="range-val">1</span>
+          </div>
+          <div class="range-row">
+            <label for="chain-max">Max carbons</label>
+            <input type="range" id="chain-max" min="1" max="8" value="6">
+            <span id="chain-max-val" class="range-val">6</span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Complexity features</legend>
+          <div class="grid-2" id="feature-options"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Formula formats (for "write formula" questions)</legend>
+          <div class="grid-2" id="formula-options"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Distractor difficulty (multiple choice)</legend>
+          <div class="grid-2" id="distractor-options"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Quiz length</legend>
+          <div class="range-row">
+            <label for="quiz-length">Number of questions</label>
+            <input type="range" id="quiz-length" min="5" max="30" step="1" value="10">
+            <span id="quiz-length-val" class="range-val">10</span>
+          </div>
+        </fieldset>
+
+      </form>
+      <div class="home-actions">
+        <button id="save-customize-btn" class="primary-btn">Save &amp; Start Quiz</button>
+        <button id="reset-customize-btn" class="secondary-btn">Reset to defaults</button>
+      </div>
+    </section>
+
+    <section id="screen-quiz" class="screen">
+      <div class="quiz-progress">
+        <span id="quiz-progress-text"></span>
+        <span id="quiz-score-text"></span>
+      </div>
+
+      <div id="question-card" class="question-card">
+        <div class="question-type-tag" id="question-type-tag"></div>
+        <p id="question-prompt" class="question-prompt"></p>
+
+        <div id="question-diagram" class="question-diagram"></div>
+
+        <div id="question-name-display" class="question-name-display"></div>
+
+        <div id="answer-area" class="answer-area"></div>
+
+        <div id="reveal-area" class="reveal-area hidden"></div>
+
+        <div class="question-actions">
+          <button id="reveal-btn" class="primary-btn">Reveal Answer</button>
+          <button id="mark-correct-btn" class="success-btn hidden">I was correct</button>
+          <button id="mark-incorrect-btn" class="danger-btn hidden">I was wrong</button>
+          <button id="next-question-btn" class="secondary-btn hidden">Next Question</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-results" class="screen">
+      <h2>Quiz Complete</h2>
+      <div id="results-summary" class="results-summary"></div>
+      <div id="results-breakdown" class="results-breakdown"></div>
+      <div class="home-actions">
+        <button id="restart-quiz-btn" class="primary-btn">Start Another Quiz</button>
+        <button id="results-customize-btn" class="secondary-btn">Customize</button>
+      </div>
+    </section>
+
+    <section id="screen-stats" class="screen">
+      <h2>Your Stats</h2>
+      <div id="stats-content"></div>
+      <div class="home-actions">
+        <button id="clear-stats-btn" class="danger-btn">Clear All Stats</button>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<div id="reference-modal" class="modal-overlay hidden">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2>Functional Group Reference</h2>
+      <button id="close-reference-btn" class="icon-btn" aria-label="Close">&times;</button>
+    </div>
+    <p class="modal-subtitle">Listed in priority order (highest to lowest) for choosing the principal characteristic group when naming a compound. Cells are left blank where VCE Chemistry Units 3&amp;4 doesn't require that form.</p>
+    <div class="table-scroll">
+      <table class="reference-table">
+        <thead>
+          <tr><th>#</th><th>IUPAC class</th><th>Functional group structure</th><th>Prefix</th><th>Suffix</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Carboxylic acid</td><td>&minus;COOH</td><td>&mdash;</td><td>-oic acid</td></tr>
+          <tr><td>2</td><td>Ester</td><td>&minus;COO&minus;</td><td>&mdash;</td><td>-oate</td></tr>
+          <tr><td>3</td><td>Aldehyde</td><td>&minus;CHO</td><td>&mdash;</td><td>-al</td></tr>
+          <tr><td>4</td><td>Ketone</td><td>&gt;C=O</td><td>&mdash;</td><td>-one</td></tr>
+          <tr><td>5</td><td>Alcohol</td><td>&minus;OH</td><td>hydroxy-</td><td>-ol</td></tr>
+          <tr><td>6</td><td>Amine</td><td>&minus;NH<sub>2</sub></td><td>amino-</td><td>-amine</td></tr>
+          <tr><td>7</td><td>Alkene</td><td>C=C</td><td>&mdash;</td><td>-ene</td></tr>
+          <tr><td>8</td><td>Alkyne <span class="ext-tag">(extension)</span></td><td>C&equiv;C</td><td>&mdash;</td><td>-yne</td></tr>
+          <tr><td>9</td><td>Halogen substituents</td><td>&minus;F, &minus;Cl, &minus;Br, &minus;I</td><td>fluoro-, chloro-, bromo-, iodo-</td><td>&mdash;</td></tr>
+          <tr><td>10</td><td>Alkyl substituents</td><td>&minus;CH<sub>3</sub>, &minus;C<sub>2</sub>H<sub>5</sub>, &minus;C<sub>3</sub>H<sub>7</sub>, &minus;C<sub>4</sub>H<sub>9</sub></td><td>methyl-, ethyl-, propyl-, butyl-</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/generator.js"></script>
+<script src="js/naming.js"></script>
+<script src="js/formula.js"></script>
+<script src="js/svg-render.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
