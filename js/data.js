@@ -30,8 +30,8 @@ const PREFIX_SUB_TYPES = Object.assign({}, ALKYL_SUBS, HALOGENS, ALKOXY_SUBS);
 // Principal characteristic groups usable on a plain chain/ring, highest priority first.
 const SUFFIX_INFO = {
   carboxylicAcid: { suffix: 'oic acid', prefix: 'carboxy', terminalOnly: true },
-  nitrile:        { suffix: 'nitrile',  prefix: 'cyano',   terminalOnly: true },
   amide:          { suffix: 'amide',    prefix: 'carbamoyl', terminalOnly: true },
+  nitrile:        { suffix: 'nitrile',  prefix: 'cyano',   terminalOnly: true },
   aldehyde:       { suffix: 'al',       prefix: 'oxo',     terminalOnly: true },
   ketone:         { suffix: 'one',      prefix: 'oxo',     terminalOnly: false },
   alcohol:        { suffix: 'ol',       prefix: 'hydroxy', terminalOnly: false },
